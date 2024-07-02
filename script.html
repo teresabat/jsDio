@@ -1,0 +1,19 @@
+<html>
+
+<body>
+  <input type="number" id="n1" name="n1" placeholder="Digite o primeiro numero">
+  <input type="number" id="n2" name="n2" placeholder="Digite o segundo numero">
+  <button id="btn">Calcular</button>
+  <div id="result">Resultado</div>
+  <script>
+    const btn = document.getElementById('btn');
+    btn.addEventListener('click', function () {
+      let n1 = Number(document.getElementById('n1').value);
+      let n2 = Number(document.getElementById('n2').value);
+      let res = n1 + n2;
+      document.getElementById('result').innerHTML = `O resultado é ${res}`
+    })
+  </script>
+</body>
+
+</html>
