@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        input {
+            margin: 10px 0;
+            padding: 5px;
+            width: calc(100% - 12px);
+            /* Ajustar largura para incluir padding */
+        }
+
+        button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #resultado {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Calculadora de Combustível</h1>
+        <label for="valorGasolina">Valor da Gasolina (R$):</label><br>
+        <input type="number" id="valorGasolina" min="0" step="0.01"><br>
+        <label for="distanciaKm">Distância (Km):</label><br>
+        <input type="number" id="distanciaKm" min="0" step="0.01"><br>
+        <label for="autonomia">Autonomia (Km/l):</label><br>
+        <input type="number" id="autonomia" min="0" step="0.01"><br>
+        <button id="btn">Calcular</button>
+        <p id="resultado"></p>
+    </div>
+    <script>
+        const btn = document.getElementById('btn');
+        btn.addEventListener('click', () => {
+            let valorGasolina = Number(document.getElementById('valorGasolina').value);
+            let distanciaKm = Number(document.getElementById('distanciaKm').value);
+            let autonomia = Number(document.getElementById('autonomia').value);
+            let resultado = document.getElementById('resultado');
+
+            // Validar se os valores de entrada são válidos
+            if (valorGasolina > 0 && distanciaKm > 0 && autonomia > 0) {
+                // Calcular o custo por quilômetro e o valor total da viagem
+                let mediaCombustivel = valorGasolina / autonomia;
+                let valorTotal = mediaCombustivel * distanciaKm;
+
+                // Exibir o resultado formatado
+                resultado.innerHTML = `O valor da gasolina é R$ ${valorGasolina.toFixed(2)}, e a média é de R$ ${mediaCombustivel.toFixed(2)} por Km, totalizando R$ ${valorTotal.toFixed(2)} reais!`;
+            } else {
+                // Exibir mensagem de erro se os valores forem inválidos
+                resultado.innerHTML = "Por favor, insira valores válidos maiores que zero.";
+                resultado.style.color = "red"; // Adicionar cor para a mensagem de erro
+            }
+        });
+    </script>
+</body>
+
+</html>
